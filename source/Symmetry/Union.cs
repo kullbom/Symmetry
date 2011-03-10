@@ -59,11 +59,11 @@ namespace Symmetry
 		// Abstractions =======================================================
 		
 		public static Option<TLeft> Left<TLeft, TRight>(this Union<TLeft, TRight> that) {
-			return that.Match(left => Option.Some(left), right => Option.None<TLeft>());  
+			return that.Match(left => Option.Some(left), right => Option<TLeft>.None());  
 		}
 		
 		public static Option<TRight> Right<TLeft, TRight>(this Union<TLeft, TRight> that) {
-			return that.Match(left => Option.None<TRight>(), right => Option.Some(right));  
+			return that.Match(left => Option<TRight>.None(), right => Option.Some(right));  
 		}
 	}
 }

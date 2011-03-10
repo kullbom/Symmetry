@@ -2,10 +2,24 @@ namespace Symmetry
 {
 	using System;
 	
+	/// <summary>
+	/// The option type is used when an actual value might not exist. 
+	/// An option has an underlying type and can hold a value of that type (Some), or it might not have a value (None).
+	/// </summary>
 	public abstract partial class Option<T> {
 		public abstract R Match<R>(Func<T, R> onSome, Func<R> onNone);
 		
-		public static implicit operator Option<T> (T value) { return Option.Some<T>(value); }
+		/// <summary>
+		/// Returns the None-value for the Option of type T.
+		/// </summary>
+		public static Option<T> None() { return Option.OptionNone<T>.none; }
+		
+		public static Option<T> Some(T value) { return Option.Some<T>(value); }
+
+		
+		public static implicit operator Option<T> (T value) { return Some(value); }
+		
+		public static implicit operator Option<T> (Option.UntypedNone value) { return None(); }
 		
 		public override string ToString() {
             return this.Match(
@@ -15,7 +29,17 @@ namespace Symmetry
 	}
 	
 	public static partial class Option {
-		private sealed class OptionNone<T> : Option<T> {
+		
+		public sealed class UntypedNone {
+			internal static UntypedNone untypedNone = new UntypedNone();
+			
+			private UntypedNone() {}
+		}
+		
+		public static UntypedNone None { get { return UntypedNone.untypedNone; } } 
+		
+		
+		internal sealed class OptionNone<T> : Option<T> {
 			public static Option<T> none = new OptionNone<T>();
 			
 			private OptionNone() {}
@@ -25,7 +49,7 @@ namespace Symmetry
 			}
 		}
 
-		private sealed class OptionSome<T> : Option<T> {
+		internal sealed class OptionSome<T> : Option<T> {
 			private readonly T Value;
 			
 			internal OptionSome(T value) {
@@ -42,11 +66,6 @@ namespace Symmetry
 		// Constructors =======================================================
 		
 		/// <summary>
-		/// Returns the None-value for the Option of type T.
-		/// </summary>
-		public static Option<T> None<T>() { return OptionNone<T>.none; }
-		
-		/// <summary>
 		/// Create an Option from the given value (passing null will throw NullReferenceException).
 		/// </summary>
 		public static Option<T> Some<T>(T value) { return new OptionSome<T>(value); }
@@ -55,27 +74,27 @@ namespace Symmetry
 		/// Create an Option from the given value (null-case will become None).
 		/// </summary>
 		public static Option<T> Create<T>(T value) where T : class {
-			return (value == null) ? None<T>() : Some<T>(value);
+			return (value == null) ? Option<T>.None() : Some<T>(value);
 		}
 		
 		/// <summary>
 		/// Create an Option from the given value (null-case will become None).
 		/// </summary>
 		public static Option<T> Create<T>(Nullable<T> value) where T : struct {
-			return (value.HasValue) ? Some<T>(value.Value) : None<T>();
+			return (value.HasValue) ? Some<T>(value.Value) : Option<T>.None();
 		}
 		
 		// Abstractions =======================================================
 		
 		public static Option<R> Bind<T, R> (this Option<T> that, Func<T, Option<R>> binder) {
-			return that.Match(binder, () => Option.None<R>());
+			return that.Match(binder, () => Option<R>.None());
 		}
 
 		public static Option<R> Map<T, R> (this Option<T> that, Func<T, R> fn) {
-			return that.Match(v => Option.Some<R>(fn(v)), () => Option.None<R>());
+			return that.Match(v => Option.Some<R>(fn(v)), () => Option<R>.None());
 		}
 		
-		public static T Exit<T>(this Option<T> that, Func<T> onNone) {
+		public static T Escape<T>(this Option<T> that, Func<T> onNone) {
             return that.Match(x => x, onNone);
         }
 		
