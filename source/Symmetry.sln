@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Symmetry", "Symmetry\Symmetry.csproj", "{5773DEC8-FE87-479E-9E5D-1172C9C38557}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Symmetry.Test", "Symmetry.Test\Symmetry.Test.csproj", "{D4BE3485-480D-4867-9C99-A121F50E9FB2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Default|Any CPU = Default|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5773DEC8-FE87-479E-9E5D-1172C9C38557}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5773DEC8-FE87-479E-9E5D-1172C9C38557}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5773DEC8-FE87-479E-9E5D-1172C9C38557}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5773DEC8-FE87-479E-9E5D-1172C9C38557}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4BE3485-480D-4867-9C99-A121F50E9FB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4BE3485-480D-4867-9C99-A121F50E9FB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4BE3485-480D-4867-9C99-A121F50E9FB2}.Default|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4BE3485-480D-4867-9C99-A121F50E9FB2}.Default|Any CPU.Build.0 = Debug|Any CPU
+		{D4BE3485-480D-4867-9C99-A121F50E9FB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4BE3485-480D-4867-9C99-A121F50E9FB2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Symmetry\Symmetry.csproj
+	EndGlobalSection
+EndGlobal
