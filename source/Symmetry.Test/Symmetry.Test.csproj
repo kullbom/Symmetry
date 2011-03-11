@@ -40,6 +40,7 @@
     <Compile Include="TestUnit.cs" />
     <Compile Include="TestLst.cs" />
     <Compile Include="TestUnion.cs" />
+    <Compile Include="TestLazy.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

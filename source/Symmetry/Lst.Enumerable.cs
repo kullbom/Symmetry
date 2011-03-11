@@ -3,23 +3,23 @@ namespace Symmetry
 	using System;
 	using System.Collections.Generic;
 	
-	public abstract partial class LList<T> : IEnumerable<T> {
+	public abstract partial class Lst<T> : IEnumerable<T> {
 
 		IEnumerator<T> IEnumerable<T>.GetEnumerator () {
-			return new LListEnumerator(this);
+			return new LstEnumerator(this);
 		}
 		
 		System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator () {
-			return new LListEnumerator(this);
+			return new LstEnumerator(this);
 		}
 		
-		private class LListEnumerator : IEnumerator<T>
+		private class LstEnumerator : IEnumerator<T>
         {
-            private readonly LList<T> source;
+            private readonly Lst<T> source;
             private bool hasMoved = false;
-			private LList<T> current = LList.Empty<T>();
+			private Lst<T> current = Lst.Empty<T>();
 
-            public LListEnumerator(LList<T> source) {
+            public LstEnumerator(Lst<T> source) {
                 this.source = source;
             }
 
@@ -45,7 +45,7 @@ namespace Symmetry
 				    return !this.current.IsEmpty;
                 } 
 				else {
-					this.current = this.current.Match((hd, tl) => tl, () => LList.Empty<T>());
+					this.current = this.current.Match((hd, tl) => tl, () => Lst.Empty<T>());
                     return !this.current.IsEmpty;
 				}
             }

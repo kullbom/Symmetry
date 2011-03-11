@@ -48,19 +48,25 @@ namespace Symmetry
 				return onNone();
 			}
 		}
-
-		internal sealed class OptionSome<T> : Option<T> {
-			private readonly T Value;
-			
-			internal OptionSome(T value) {
-				if (value == null)
-                	throw new NullReferenceException();
-				this.Value = value;
-			}
+		
+		internal abstract class OptionSome<T> : Option<T> {
+			public abstract T Value();
 			
 			public override R Match<R>(Func<T, R> onSome, Func<R> onNone) {
-				return onSome(this.Value);
+				return onSome(this.Value());
 			}
+		}
+		
+		internal sealed class OptionValueSome<T> : OptionSome<T> {
+			private readonly T value;
+			
+			internal OptionValueSome(T value) {
+				if (value == null)
+                	throw new NullReferenceException();
+				this.value = value;
+			}
+			
+			public override T Value() { return this.value; }
 		}
 		
 		// Constructors =======================================================
@@ -68,7 +74,7 @@ namespace Symmetry
 		/// <summary>
 		/// Create an Option from the given value (passing null will throw NullReferenceException).
 		/// </summary>
-		public static Option<T> Some<T>(T value) { return new OptionSome<T>(value); }
+		public static Option<T> Some<T>(T value) { return new OptionValueSome<T>(value); }
 		
 		/// <summary>
 		/// Create an Option from the given value (null-case will become None).
@@ -101,5 +107,10 @@ namespace Symmetry
 		public static bool IsSome<T>(this Option<T> that) {
 			return that.Match(v => true, () => false);
 		}
+		
+		// Lazy
+		//public static R LazyMap<T, R>(this Option<T> that, Func<T, R> fn) {
+		//	return that.Match(v => Option.Some<R>(fn(v)), () => Option<R>.None());
+		//}
 	}
 }

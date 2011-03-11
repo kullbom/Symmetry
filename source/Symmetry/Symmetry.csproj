@@ -38,8 +38,9 @@
     <Compile Include="Union.cs" />
     <Compile Include="Unit.cs" />
     <Compile Include="Option.Enumerable.cs" />
-    <Compile Include="LList.cs" />
-    <Compile Include="LList.Enumerable.cs" />
+    <Compile Include="Lst.cs" />
+    <Compile Include="Lst.Enumerable.cs" />
+    <Compile Include="Lazy.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

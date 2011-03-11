@@ -11,7 +11,7 @@ namespace Symmetry.Test
 		[Test()]
 		public void TestContent ()
 		{
-			var lst1 = LList.Create(1,2,3,4,5,6);
+			var lst1 = Lst.Create(1,2,3,4,5,6);
 			var odds = lst1.Filter(x => x%2 == 0);
 			
 			Assert.AreEqual(6, lst1.Count());
@@ -22,11 +22,11 @@ namespace Symmetry.Test
 		[Test()]
 		public void TestEquality ()
 		{
-			var l0 = LList.Create(1,2,3,4,5,6);
-			var l1 = LList.Create(1,2,3,4,5,6);
-			var l2 = LList.Create(1,2,3,4,5,7);
-			var l3 = LList.Create(1,2,3,4,5);
-			var l4 = LList.Create(5,4,3,2,1);
+			var l0 = Lst.Create(1,2,3,4,5,6);
+			var l1 = Lst.Create(1,2,3,4,5,6);
+			var l2 = Lst.Create(1,2,3,4,5,7);
+			var l3 = Lst.Create(1,2,3,4,5);
+			var l4 = Lst.Create(5,4,3,2,1);
 			
 			Assert.IsTrue(l0.IsEqual(l1));
 			Assert.IsFalse(l0.IsEqual(l2));
