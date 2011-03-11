@@ -1,3 +1,5 @@
+// Copyright 2011 Johan Kullbom (see the file license.txt)
+
 namespace Symmetry
 {
 	using System;
@@ -19,4 +21,3 @@ namespace Symmetry
 		public bool Equals (Unit other) { return true; }
 	}
 }
-			

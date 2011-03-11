@@ -1,24 +1,26 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Symmetry/LList.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Symmetry/Unit.cs">
     <Files>
-      <File FileName="Symmetry/Option.cs" Line="10" Column="3" />
-      <File FileName="Symmetry/Union.cs" Line="49" Column="3" />
-      <File FileName="Symmetry/Unit.cs" Line="1" Column="1" />
-      <File FileName="Symmetry/LList.cs" Line="7" Column="80" />
-      <File FileName="Symmetry/Option.Enumerable.cs" Line="1" Column="1" />
-      <File FileName="Symmetry/LList.Enumerable.cs" Line="48" Column="67" />
-      <File FileName="Symmetry.Test/TestOption.cs" Line="1" Column="1" />
+      <File FileName="Symmetry/Option.cs" Line="3" Column="1" />
+      <File FileName="Symmetry/Union.cs" Line="3" Column="1" />
+      <File FileName="Symmetry/Unit.cs" Line="23" Column="2" />
+      <File FileName="Symmetry/Lst.cs" Line="3" Column="1" />
+      <File FileName="Symmetry/Option.Enumerable.cs" Line="3" Column="1" />
+      <File FileName="Symmetry/Lst.Enumerable.cs" Line="3" Column="1" />
+      <File FileName="Symmetry.Test/TestOption.cs" Line="16" Column="40" />
       <File FileName="Symmetry.Test/TestUnit.cs" Line="1" Column="1" />
-      <File FileName="Symmetry.Test/TestLst.cs" Line="28" Column="37" />
-      <File FileName="Symmetry.Test/TestUnion.cs" Line="21" Column="1" />
-      <File FileName="Symmetry/AssemblyInfo.cs" Line="12" Column="49" />
+      <File FileName="Symmetry.Test/TestLst.cs" Line="1" Column="1" />
+      <File FileName="Symmetry.Test/TestUnion.cs" Line="1" Column="1" />
+      <File FileName="Symmetry/AssemblyInfo.cs" Line="1" Column="1" />
+      <File FileName="Symmetry/Lazy.cs" Line="1" Column="59" />
+      <File FileName="Symmetry.Test/TestLazy.cs" Line="17" Column="48" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Symmetry" expanded="True">
-            <Node name="LList.cs" selected="True" />
+            <Node name="Unit.cs" selected="True" />
           </Node>
           <Node name="Symmetry.Test" expanded="True" />
         </State>
