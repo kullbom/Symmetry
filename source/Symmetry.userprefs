@@ -1,17 +1,25 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Symmetry.Test/TestStrBuilder.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Symmetry/AssemblyInfo.cs">
     <Files>
-      <File FileName="Symmetry/StrBuilder.cs" Line="41" Column="30" />
-      <File FileName="Symmetry.Test/TestStrBuilder.cs" Line="54" Column="9" />
+      <File FileName="Symmetry.Test/TestStringExt.cs" Line="21" Column="21" />
+      <File FileName="Symmetry/StringExt.cs" Line="3" Column="1" />
+      <File FileName="Symmetry/Unit.cs" Line="1" Column="54" />
+      <File FileName="Symmetry/Union.cs" Line="1" Column="54" />
+      <File FileName="Symmetry/Option.Enumerable.cs" Line="1" Column="55" />
+      <File FileName="Symmetry/Option.cs" Line="1" Column="55" />
+      <File FileName="Symmetry/Lst.Enumerable.cs" Line="1" Column="55" />
+      <File FileName="Symmetry/Lst.cs" Line="1" Column="55" />
+      <File FileName="Symmetry/Lazy.cs" Line="1" Column="55" />
+      <File FileName="Symmetry/AssemblyInfo.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="Symmetry" expanded="True" />
-          <Node name="Symmetry.Test" expanded="True">
-            <Node name="TestStrBuilder.cs" selected="True" />
+          <Node name="Symmetry" expanded="True">
+            <Node name="AssemblyInfo.cs" selected="True" />
           </Node>
+          <Node name="Symmetry.Test" expanded="True" />
         </State>
       </Pad>
       <Pad Id="ClassPad">
@@ -21,17 +29,7 @@
         <State />
       </Pad>
       <Pad Id="MonoDevelop.NUnit.TestPad">
-        <State expanded="True">
-          <Node name="Symmetry.Test" expanded="True">
-            <Node name="Symmetry" expanded="True">
-              <Node name="Test" expanded="True">
-                <Node name="TestStrBuilder" expanded="True">
-                  <Node name="TestPerformance" selected="True" />
-                </Node>
-              </Node>
-            </Node>
-          </Node>
-        </State>
+        <State expanded="True" selected="True" />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
