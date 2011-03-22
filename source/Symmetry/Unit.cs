@@ -9,7 +9,7 @@ namespace Symmetry
 	/// 
 	/// For futher information see "Unit Type (F#)": http://msdn.microsoft.com/en-us/library/dd483472.aspx
 	/// </summary>
-	public sealed class Unit : IEquatable<Unit> 
+	public sealed class Unit : IEquatable<Unit>
 	{
 		/// <summary>
 		/// The unit type has only a single value, which acts as a placeholder when no other value exists or is needed.

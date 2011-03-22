@@ -1,4 +1,4 @@
-// Copyright 2011 Johan Kullbom (see the file license.txt)
+// Copyright 2011 Johan Kullbom (see the file LICENSE)
 
 namespace Symmetry
 {
@@ -6,7 +6,7 @@ namespace Symmetry
 	using System.Collections.Generic;
 	
 	/// <summary>
-	/// Lst - A simple immutable singly linked list. Implementes IEnumerable<T>.
+    /// Lst - A simple immutable singly linked list. Implementes IEnumerable&lt;T&gt;.
 	/// </summary>
 	public abstract partial class Lst<T> {
 		public abstract R Match<R>(Func<T, Lst<T>, R> onSome, Func<R> onEmpty); 

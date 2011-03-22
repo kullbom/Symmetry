@@ -1,4 +1,4 @@
-// Copyright 2011 Johan Kullbom (see the file license.txt)
+// Copyright 2011 Johan Kullbom (see the file LICENSE)
 
 namespace Symmetry
 {

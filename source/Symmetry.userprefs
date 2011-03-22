@@ -1,28 +1,17 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Symmetry/Unit.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Symmetry.Test/TestStrBuilder.cs">
     <Files>
-      <File FileName="Symmetry/Option.cs" Line="3" Column="1" />
-      <File FileName="Symmetry/Union.cs" Line="3" Column="1" />
-      <File FileName="Symmetry/Unit.cs" Line="23" Column="2" />
-      <File FileName="Symmetry/Lst.cs" Line="3" Column="1" />
-      <File FileName="Symmetry/Option.Enumerable.cs" Line="3" Column="1" />
-      <File FileName="Symmetry/Lst.Enumerable.cs" Line="3" Column="1" />
-      <File FileName="Symmetry.Test/TestOption.cs" Line="16" Column="40" />
-      <File FileName="Symmetry.Test/TestUnit.cs" Line="1" Column="1" />
-      <File FileName="Symmetry.Test/TestLst.cs" Line="1" Column="1" />
-      <File FileName="Symmetry.Test/TestUnion.cs" Line="1" Column="1" />
-      <File FileName="Symmetry/AssemblyInfo.cs" Line="1" Column="1" />
-      <File FileName="Symmetry/Lazy.cs" Line="1" Column="59" />
-      <File FileName="Symmetry.Test/TestLazy.cs" Line="17" Column="48" />
+      <File FileName="Symmetry/StrBuilder.cs" Line="41" Column="30" />
+      <File FileName="Symmetry.Test/TestStrBuilder.cs" Line="54" Column="9" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="Symmetry" expanded="True">
-            <Node name="Unit.cs" selected="True" />
+          <Node name="Symmetry" expanded="True" />
+          <Node name="Symmetry.Test" expanded="True">
+            <Node name="TestStrBuilder.cs" selected="True" />
           </Node>
-          <Node name="Symmetry.Test" expanded="True" />
         </State>
       </Pad>
       <Pad Id="ClassPad">
@@ -32,7 +21,17 @@
         <State />
       </Pad>
       <Pad Id="MonoDevelop.NUnit.TestPad">
-        <State expanded="True" selected="True" />
+        <State expanded="True">
+          <Node name="Symmetry.Test" expanded="True">
+            <Node name="Symmetry" expanded="True">
+              <Node name="Test" expanded="True">
+                <Node name="TestStrBuilder" expanded="True">
+                  <Node name="TestPerformance" selected="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
