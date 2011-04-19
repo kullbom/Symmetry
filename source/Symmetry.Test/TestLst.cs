@@ -40,7 +40,22 @@ namespace Symmetry.Test
 			Assert.IsFalse(l0.IsEqual(l3, (x, y) => true));
 			Assert.IsFalse(l0.IsEqual(l4, (x, y) => true));
 			Assert.IsTrue(l3.IsEqual(l4, (x, y) => true));
+		}
+		
+		[Test()]
+		public void TestFolds ()
+		{
+			var lst = Lst.Create(1,2,3,4,5,6);
 			
+			// (((((0 - 1) - 2) - 3) - 4) - 5) - 6
+			Assert.AreEqual(-21, lst.FoldL(0, (seed, e) => seed - e));
+			// (((((0 - 6) - 5) - 4) - 3) - 2) - 1
+			Assert.AreEqual(-21, lst.FoldR(0, (seed, e) => seed - e));
+
+			// 6 - (5 - (4 - (3 - (2 - (1 - 0)))))
+			Assert.AreEqual(3, lst.FoldL(0, (seed, e) => e - seed));
+			// 1 - (2 - (3 - (4 - (5 - (6 - 0)))))
+			Assert.AreEqual(-3, lst.FoldR(0, (seed, e) => e - seed));
 		}
 	}
 }

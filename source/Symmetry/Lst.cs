@@ -11,9 +11,9 @@ namespace Symmetry
 	public abstract partial class Lst<T> {
 		public abstract R Match<R>(Func<T, Lst<T>, R> onSome, Func<R> onEmpty); 
 		
-		public bool IsEmpty {
-			get { return this.Match((hd, tl) => false, () => true); } 
-		}
+		public abstract int Length();
+		
+		public bool IsEmpty() { return this.Match((hd, tl) => false, () => true); } 
 		
 		public override string ToString() {
             return this.Match(
@@ -31,6 +31,8 @@ namespace Symmetry
 			public override R Match<R>(Func<T, Lst<T>, R> onSome, Func<R> onEmpty) {
 				return onEmpty();
 			}
+			
+			public override int Length() { return 0; }
 		}
 		
 		private abstract class LstCell<T> : Lst<T> { 
@@ -46,12 +48,15 @@ namespace Symmetry
 		private sealed class LstValueCell<T> : LstCell<T> {
 			private readonly T head; 
 			private readonly Lst<T> tail;
+			private readonly int length;
 			
 			internal LstValueCell(T head, Lst<T> tail) {
 				this.head = head;
 				this.tail = tail;
+				this.length = tail.Length() + 1;
 			}
 			
+			public override int Length() { return this.length; }
 			internal override T Head() { return this.head; }
 			internal override Lst<T> Tail() { return this.tail; }
 		}
@@ -73,20 +78,13 @@ namespace Symmetry
 		
 		public static Lst<T> Cons<T>(T head, Lst<T> tail) { return new LstValueCell<T>(head, tail); }
 
-        public static Lst<T> Create<T>(params T[] elements) {
-            var result = Empty<T>();
-            for(var i = (elements.Length - 1); i >= 0; i--)
-                result = Cons(elements[i], result);
-            return result;
-        }
+        public static Lst<T> Create<T>(params T[] elements) { return FromArray(elements); }
 
-		
 		public static Lst<T> Create<T>(IEnumerable<T> elements) {
-            return CreateFromEnumerator(elements.GetEnumerator());
+            return FromEnumerator(elements.GetEnumerator());
         }
 		
-		public static Lst<T> CreateFromEnumerator<T>(System.Collections.Generic.IEnumerator<T> e)
-		{
+		private static Lst<T> FromEnumerator<T>(System.Collections.Generic.IEnumerator<T> e) {
 			return (e.MoveNext())
 				? Cons(e.Current, CreateFromEnumerator<T>(e))
 				: Empty<T>();
@@ -99,10 +97,21 @@ namespace Symmetry
 			return OptimizedFoldL(aggregator, seed, that);
 		}
 		
+		public static TAcc FoldR<T, TAcc>(this Lst<T> that, TAcc seed, Func<TAcc, T, TAcc> aggregator) {
+			return OptimizedFoldR(aggregator, seed, that);
+		}
+		
 		public static Lst<R> Map<T, R>(this Lst<T> that, Func<T, R> fn) {
             return OptimizedFoldR((acc, x) => Cons(fn(x), acc), Empty<R>(), that);
         }
-
+		
+		public static Lst<R> Bind<T, R>(this Lst<T> that, Func<T, Lst<R>> binder) {
+			return OptimizedFoldR(
+					(a0, x) => OptimizedFoldR((a1, r) => Cons(r, a1), a0, binder(x)),
+					Empty<R>(),
+				    that);
+		}
+		
         public static Lst<T> Filter<T>(this Lst<T> that, Func<T, bool> predicate) {
             return OptimizedFoldR(
 				(acc, x) => predicate(x) ? Cons(x, acc) : acc,
@@ -110,15 +119,27 @@ namespace Symmetry
 				that);
         }
 		
+		public static T[] ToArray<T>(this Lst<T> that) {
+			T[] arr = new T[that.Length()];
+			
+			var index = 0;
+			foreach(var element in that) {
+				arr[index] = element;
+				index++;
+			}
+			return arr;
+		}
+		
+		public static Lst<T> FromArray<T>(T[] arr) {
+			var result = Empty<T>();
+            for(var i = (elements.Length - 1); i >= 0; i--)
+                result = Cons(elements[i], result);
+            return result;
+		}
+		
 		public static bool IsEqual<T>(this Lst<T> that, Lst<T> other) where T : IEquatable<T>
 		{
-			return that.Match(
-				(hd0, tl0) => other.Match(
-						(hd1, tl1) => hd0.Equals(hd1) && IsEqual(tl0, tl1),
-					    ()         => false),
-				()         => other.Match(
-						(hd1, tl1) => false,
-					    ()         => true));
+			return that.IsEqual(other, (e0, e1) => e0.Equals(e1));
 		}
 		
 		public static bool IsEqual<T>(this Lst<T> that, Lst<T> other, Func<T, T, bool> equality) 
@@ -165,10 +186,10 @@ namespace Symmetry
 		}
 		
 		private static TAcc OptimizedFoldR<T, TAcc>(Func<TAcc, T, TAcc> aggregator, TAcc seed, Lst<T> list) {
-			// Not yet optimized in any way... 
-			return list.Match<TAcc>(
-				(hd, tl) => OptimizedFoldR(aggregator, aggregator(seed, hd), tl),
-				() => seed);
+			var arr = list.ToArray();
+			for(int i = arr.Length - 1; i >= 0; i--)
+				seed = aggregator(seed, arr[i]);
+			return seed;
 		}
 	}
 }

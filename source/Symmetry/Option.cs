@@ -25,7 +25,7 @@ namespace Symmetry
 		
 		public override string ToString() {
             return this.Match(
-                v => string.Format("Some({0})", v.ToString()),
+                v  => string.Format("Some({0})", v.ToString()),
                 () => "None");
         }
 	}
